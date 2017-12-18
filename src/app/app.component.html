@@ -1,0 +1,12 @@
+<dw-navi #navi
+         (openCreateClick)="create.createOpen(); home.homeClose(); info.infoClose(); transfer.transferClose(); login.loginClose();"
+         (openHomeClick)="home.homeOpen(); info.infoClose(); create.createClose(); transfer.transferClose(); login.loginClose();"
+         (openInfoClick)="info.infoOpen(); home.homeClose(); create.createClose(); transfer.transferClose(); login.loginClose();"
+         (openTransferClick)="transfer.transferOpen(); info.infoClose(); home.homeClose(); create.createClose(); login.loginClose();"
+         (openLoginClick)="login.loginOpen(); create.createClose(); home.homeClose(); info.infoClose(); transfer.transferClose();"></dw-navi>
+
+<dw-home #home></dw-home>
+<dw-create #create></dw-create>
+<dw-info #info></dw-info>
+<dw-transfer #transfer></dw-transfer>
+<dw-login #login></dw-login>

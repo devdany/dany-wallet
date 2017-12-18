@@ -1,0 +1,36 @@
+<header class="navbar-wrapper">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="top-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-inline pull-right top-right">
+              <li class="nav-list">
+                <span>
+                  <a href="#" (click)="openHome($event)" data-toggle="modal" data-target="#signup-modal">홈</a>
+                  <a href="#" (click)="openCreate($event)" datsa-toggle="modal" data-target="#login-modal">지갑 생성</a>
+                  <a href="#" (click)="openLogin($event)" data-toggle="modal" data-target="#signup-modal">로그인</a>
+                  <a href="#" (click)="openInfo($event)" data-toggle="modal" data-target="#signup-modal">지갑 정보 확인</a>
+                  <a href="#" (click)="openTransfer($event)" data-toggle="modal" data-target="#signup-modal">전송하기</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container navbar-inner">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false"
+                aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
