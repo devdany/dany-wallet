@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import Web3 from 'web3';
+import $ from 'jquery';
 
 @Component({
   selector: 'dw-create',
@@ -9,6 +10,7 @@ import Web3 from 'web3';
 })
 export class CreateComponent implements OnInit {
   isOpen = false;
+  web3 = new Web3('http://localhost:8545');
   constructor(@Inject(DOCUMENT) private doc: Document) {}
   ngOnInit() {
   }
@@ -19,7 +21,8 @@ export class CreateComponent implements OnInit {
     this.isOpen = false;
   }
   createAccount() {
-
+    const password = $('#password').val();
+    this.web3.eth.personal.newAccount(password).then(console.log);
   }
 
 }
