@@ -1,12 +1,14 @@
 <dw-navi #navi
-         (openCreateClick)="create.createOpen(); home.homeClose(); info.infoClose(); transfer.transferClose(); login.loginClose();"
-         (openHomeClick)="home.homeOpen(); info.infoClose(); create.createClose(); transfer.transferClose(); login.loginClose();"
-         (openInfoClick)="info.infoOpen(); home.homeClose(); create.createClose(); transfer.transferClose(); login.loginClose();"
-         (openTransferClick)="transfer.transferOpen(); info.infoClose(); home.homeClose(); create.createClose(); login.loginClose();"
-         (openLoginClick)="login.loginOpen(); create.createClose(); home.homeClose(); info.infoClose(); transfer.transferClose();"></dw-navi>
+         (openHomeClick)="home.homeOpen(); info.infoClose(); transfer.transferClose(); "
+         (openInfoClick)="info.infoOpen(); home.homeClose(); transfer.transferClose(); "
+         (openTransferClick)="transfer.transferOpen(); info.infoClose(); home.homeClose();"
+         (onLoginClick)="modal.show()"
+         (onSignupClick)="modal.show()"></dw-navi>
+<div dw-login bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
 
+</div>
 <dw-home #home></dw-home>
-<dw-create #create></dw-create>
 <dw-info #info></dw-info>
 <dw-transfer #transfer></dw-transfer>
-<dw-login #login></dw-login>
+

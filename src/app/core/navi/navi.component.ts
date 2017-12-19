@@ -1,4 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+import {AuthService} from '../shared/auth.service';
 
 @Component({
   selector: 'dw-navi',
@@ -6,14 +8,20 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
-
-  constructor() { }
+  email: string
+  constructor(private el: ElementRef, @Inject(DOCUMENT) private doc: Document, private auth: AuthService) {
+    auth.token.subscribe(user => {
+      if (user) {
+        console.log(user.email);
+        this.email = user.email;
+      } else {
+        this.email = undefined;
+      }
+    });
+  }
 
   ngOnInit() {
   }
-
-  @Output()
-  openCreateClick = new EventEmitter();
 
   @Output()
   openInfoClick = new EventEmitter();
@@ -25,11 +33,10 @@ export class NaviComponent implements OnInit {
   openTransferClick = new EventEmitter();
 
   @Output()
-  openLoginClick = new EventEmitter();
+  onSignupClick = new EventEmitter();
 
-  openCreate() {
-    this.openCreateClick.emit();
-  }
+  @Output()
+  onLoginClick = new EventEmitter();
 
   openInfo() {
     this.openInfoClick.emit();
@@ -43,7 +50,4 @@ export class NaviComponent implements OnInit {
     this.openTransferClick.emit();
   }
 
-  openLogin() {
-    this.openLoginClick.emit();
-  }
 }

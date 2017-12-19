@@ -7,11 +7,16 @@
             <ul class="list-inline pull-right top-right">
               <li class="nav-list">
                 <span>
-                  <a href="#" (click)="openHome($event)" data-toggle="modal" data-target="#signup-modal">홈</a>
-                  <a href="#" (click)="openCreate($event)" datsa-toggle="modal" data-target="#login-modal">지갑 생성</a>
-                  <a href="#" (click)="openLogin($event)" data-toggle="modal" data-target="#signup-modal">로그인</a>
-                  <a href="#" (click)="openInfo($event)" data-toggle="modal" data-target="#signup-modal">지갑 정보 확인</a>
-                  <a href="#" (click)="openTransfer($event)" data-toggle="modal" data-target="#signup-modal">전송하기</a>
+                  <!--로그인이 되었을때만 보일것: 홈, 지갑정보확인, 전송하기 // 안되었을때 보일것: 로그인,지갑 생성-->
+                  <div *ngIf="!email;else loginInfo" class="account-login">
+                    <a href="#" (click)="onSignupClick.emit()" datsa-toggle="modal" data-target="#login-modal">회원가입</a>
+                    <a href="#" (click)="onLoginClick.emit()" data-toggle="modal" data-target="#signup-modal">로그인</a>
+                  </div>
+                  <ng-template #loginInfo>
+                    <a href="#" (click)="openHome($event)">홈</a>
+                    <a href="#" (click)="openInfo($event)">지갑 정보 확인</a>
+                    <a href="#" (click)="openTransfer($event)">전송하기</a>
+                  </ng-template>
                 </span>
               </li>
             </ul>
