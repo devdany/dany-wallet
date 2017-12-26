@@ -3,11 +3,12 @@
          (openInfoClick)="info.infoOpen(); home.homeClose(); transfer.transferClose(); "
          (openTransferClick)="transfer.transferOpen(); info.infoClose(); home.homeClose();"
          (onLoginClick)="modal.show()"
-         (onSignupClick)="modal.show()"></dw-navi>
+         (onSignupClick)="signUp()"
+         (onLogOut)="home.homeOpen(); info.infoClose(); transfer.transferClose();"></dw-navi>
 <div dw-login bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
-
 </div>
+
 <dw-home #home></dw-home>
 <dw-info #info></dw-info>
 <dw-transfer #transfer></dw-transfer>

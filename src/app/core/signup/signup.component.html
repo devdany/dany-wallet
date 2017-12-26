@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <button type="button" (click)="modal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form #signupForm="ngForm" method="POST" class="form-horizontal p-m" role="form">
+  <div class="modal-body">
+    <h4 class="modal-title mb-m">Sign Up</h4>
+    <div class="form-group">
+      <label for="signup-email">EMAIL</label>
+      <input [(ngModel)]="email" required type="text" id="signup-email" name="email" class="form-control email" placeholder="example@gmail.com">
+    </div>
+    <div class="form-group">
+      <label for="signup-password">PASSWORD</label>
+      <input [(ngModel)]="password" required minlength="6" type="password" id="signup-password" name="password" class="form-control email mb-xxs-sm" placeholder="xxxxxx">
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      <button type="button" class="close" (click)="errorMessage = undefined">&times;</button>
+      <strong>{{errorMessage}}</strong>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button (click)="signup(email, password)" type="button" class="btn btn-primary">Sign Up</button>
+  </div>
+</form>

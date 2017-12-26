@@ -1,13 +1,19 @@
 <div class="container" *ngIf="isOpen">
-  <h1>받는 주소</h1>
-  <input type="text"><br>
-  <h1>보낼 수량</h1>
-  <input type="text">
-  <select>
-    <option value="eth">Eth</option>
-  </select>
-  <br>
-  <h1>가스 한도</h1>
-  <input type="text"><br>
-  <a href="#">전송</a>
+  <form role="form" #transferForm = "ngForm">
+    <h1>받는 주소</h1>
+    <input  [(ngModel)]="receiver" required name="receiver" type="text" #input1><br>
+    <h1>보낼 수량</h1>
+    <input  [(ngModel)]="amount" required name="amount" type="text" #input2><br>
+    <h1>가스 한도</h1>
+    <input  [(ngModel)]="gasLimit"  name="gasLimit" type="text" #input3><br>
+    <h1>가스 가격</h1>
+    <input  [(ngModel)]="gasPrice"  name="gasPrice" type="text" #input4><br>
+    <br>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      <button type="button" class="close" (click)="errorMessage = undefined">&times;</button>
+      <strong>{{errorMessage}}</strong>
+    </div>
+    <br>
+    <button (click)="transfer(receiver, amount, gasLimit, gasPrice); input1.value=''; input2.value=''; input3.value = ''; input4.value = '';" type="button" class="btn btn-primary">전송하기</button>
+  </form>
 </div>

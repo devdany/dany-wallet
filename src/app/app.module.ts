@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
 import {FeatureModule} from './feature/feature.module';
+import {SignupComponent} from "./core/signup/signup.component";
 
 
 
@@ -18,6 +19,7 @@ import {FeatureModule} from './feature/feature.module';
     FeatureModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SignupComponent]
 })
 export class AppModule { }

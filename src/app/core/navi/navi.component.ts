@@ -1,6 +1,7 @@
 import {Component, ElementRef, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {AuthService} from '../shared/auth.service';
+import $ from 'jquery';
 
 @Component({
   selector: 'dw-navi',
@@ -8,11 +9,10 @@ import {AuthService} from '../shared/auth.service';
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
-  email: string
+  email: string;
   constructor(private el: ElementRef, @Inject(DOCUMENT) private doc: Document, private auth: AuthService) {
     auth.token.subscribe(user => {
       if (user) {
-        console.log(user.email);
         this.email = user.email;
       } else {
         this.email = undefined;
@@ -38,6 +38,9 @@ export class NaviComponent implements OnInit {
   @Output()
   onLoginClick = new EventEmitter();
 
+  @Output()
+  onLogOut = new EventEmitter();
+
   openInfo() {
     this.openInfoClick.emit();
   }
@@ -48,6 +51,11 @@ export class NaviComponent implements OnInit {
 
   openTransfer() {
     this.openTransferClick.emit();
+  }
+
+  logout() {
+    this.auth.signOut();
+    this.onLogOut.emit();
   }
 
 }

@@ -11,6 +11,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {AuthService} from '../shared/auth.service';
 
 
+
 @Component({
   selector: '[dw-login]',
   templateUrl: './login.component.html',
@@ -23,9 +24,9 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
   @ViewChild(NgForm) loginForm: NgForm;
 
+
   constructor(public modal: ModalDirective, private http: HttpClient, private auth: AuthService , private jwt: JwtHelperService) {
     const token = this.jwt.tokenGetter();
-    console.log(token);
   }
 
   ngOnInit() {
@@ -37,9 +38,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     if (this.loginForm.form.controls.password.errors) {
-      const error = this.loginForm.form.controls.password.errors;
-      if (error.required) this.errorMessage = 'password id required!';
-      else this.errorMessage = 'password should have more than 6 characters';
+      this.errorMessage = 'password is required!';
       return;
     }
     if (this.errorMessage) this.errorMessage = undefined;

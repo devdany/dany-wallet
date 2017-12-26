@@ -1,0 +1,15 @@
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4a4a4a;
+}
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
