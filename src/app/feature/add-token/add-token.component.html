@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <button type="button" (click)="modal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form #signupForm="ngForm" method="POST" class="form-horizontal p-m" role="form">
+  <div class="modal-body">
+    <h4 class="modal-title mb-m">Add Token</h4>
+    <div class="form-group">
+      <label for="address">address</label>
+      <input [(ngModel)]="address" required type="text" id="address" name="address" class="form-control email" placeholder="token address">
+    </div>
+  </div>
+
+  <div *ngIf="checkResult !== true" class="modal-footer">
+    <button (click)="checkAddr(address)" type="button" class="btn btn-primary">주소 확인</button>
+  </div>
+  <div *ngIf="checkResult === true" class="alert alert-danger">
+    <button type="button" class="close" (click)="addToken()">토큰 추가</button>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    <button type="button" class="close" (click)="errorMessage = undefined">&times;</button>
+    <strong>{{errorMessage}}</strong>
+  </div>
+</form>

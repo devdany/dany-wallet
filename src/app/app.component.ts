@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BsModalService} from 'ngx-bootstrap';
 import {SignupComponent} from './core/signup/signup.component';
+import {AddTokenComponent} from "./feature/add-token/add-token.component";
 
 
 
@@ -16,6 +17,11 @@ export class AppComponent {
   signUp() {
     this.bsModal.config.class = 'signup';
     this.bsModal.show(SignupComponent);
+  }
+
+  addToken() {
+    this.bsModal.config.class = 'addToken';
+    this.bsModal.show(AddTokenComponent);
   }
 
 }

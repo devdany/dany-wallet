@@ -2,14 +2,14 @@
          (openHomeClick)="home.homeOpen(); info.infoClose(); transfer.transferClose(); "
          (openInfoClick)="info.infoOpen(); home.homeClose(); transfer.transferClose(); "
          (openTransferClick)="transfer.transferOpen(); info.infoClose(); home.homeClose();"
-         (onLoginClick)="modal.show()"
+         (onLoginClick)="loginModal.show()"
          (onSignupClick)="signUp()"
          (onLogOut)="home.homeOpen(); info.infoClose(); transfer.transferClose();"></dw-navi>
-<div dw-login bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div dw-login bsModal #loginModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
 </div>
 
 <dw-home #home></dw-home>
-<dw-info #info></dw-info>
+<dw-info #info (onAddToken)="addToken()"></dw-info>
 <dw-transfer #transfer></dw-transfer>
 

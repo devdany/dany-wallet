@@ -5,6 +5,7 @@ import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
 import {FeatureModule} from './feature/feature.module';
 import {SignupComponent} from "./core/signup/signup.component";
+import {AddTokenComponent} from "./feature/add-token/add-token.component";
 
 
 
@@ -20,6 +21,6 @@ import {SignupComponent} from "./core/signup/signup.component";
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SignupComponent]
+  entryComponents: [SignupComponent, AddTokenComponent]
 })
 export class AppModule { }

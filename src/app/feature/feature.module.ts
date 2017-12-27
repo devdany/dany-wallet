@@ -6,16 +6,20 @@ import {TransferComponent} from './transfer/transfer.component';
 import {AuthService} from '../core/shared/auth.service';
 import {SharedModule} from '../shared/shared.module';
 import {Web3Service} from '../core/shared/web3.service';
+import { AddTokenComponent } from './add-token/add-token.component';
+import {JsonpModule} from "@angular/http";
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    JsonpModule
   ],
   declarations: [
     HomeComponent,
     InfoComponent,
-    TransferComponent
+    TransferComponent,
+    AddTokenComponent
   ],
   exports: [
     HomeComponent,

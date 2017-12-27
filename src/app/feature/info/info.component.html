@@ -1,7 +1,19 @@
 <div class="container" *ngIf="isOpen">
   <h1>지갑 정보 확인</h1>
   <div class="wallet-info col-lg-12" style="margin:0;">
-     <h2 class="col-lg-10">address: {{account.address}}</h2>
-     <h2 class="col-lg-10">balance: {{account.balance}}ether</h2>
+    <h2 class="col-lg-10">address: {{account.address}}</h2>
+    <h2 class="col-lg-10">balance: {{account.balance}}ether</h2>
+  </div>
+  <br>
+  <div>
+    <button (click)="onAddToken.emit()">토큰 추가</button>
+
+  </div>
+  <br>
+  <div>
+    <h1>토큰 정보 확인</h1>
+    <div>
+
+    </div>
   </div>
 </div>

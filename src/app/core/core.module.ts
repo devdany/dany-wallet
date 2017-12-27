@@ -6,7 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import {AuthService} from './shared/auth.service';
 import { SignupComponent } from './signup/signup.component';
-import {Web3Service} from "./shared/web3.service";
+import {Web3Service} from './shared/web3.service';
+
 
 @NgModule({
   imports: [

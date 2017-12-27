@@ -6,7 +6,7 @@ import {Transfer} from '../../shared/transfer';
 
 @Injectable()
 export class Web3Service {
-  web3 = new Web3('http://localhost:8545');
+  web3 = new Web3('http://52.78.181.207:8806');
   account: Account = {
     address: '',
     balance: 0

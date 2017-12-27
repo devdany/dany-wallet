@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../core/shared/auth.service';
 import {Web3Service} from '../../core/shared/web3.service';
 import {User} from '../../shared/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {Account} from '../../shared/account';
+
 
 
 @Component({
@@ -21,7 +22,8 @@ export class InfoComponent implements OnInit {
     address: '',
     balance: 0
   };
-
+  @Output()
+  onAddToken = new EventEmitter();
 
   constructor(private auth: AuthService, private web3Service: Web3Service, private jwt: JwtHelperService) {}
 
@@ -41,6 +43,7 @@ export class InfoComponent implements OnInit {
     this.web3Service.getAccount(this.loginUser._id).then(res => {
       this.account = res;
     });
+
 
     this.isOpen = true;
   }
