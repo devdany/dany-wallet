@@ -9,6 +9,7 @@ import 'rxjs/add/observable/of';
 
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AuthService} from '../shared/auth.service';
+import {Web3Service} from "../shared/web3.service";
 
 
 
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   @ViewChild(NgForm) loginForm: NgForm;
 
 
-  constructor(public modal: ModalDirective, private http: HttpClient, private auth: AuthService , private jwt: JwtHelperService) {
+  constructor(public modal: ModalDirective, private http: HttpClient, private auth: AuthService , private jwt: JwtHelperService, private web3Service: Web3Service) {
     const token = this.jwt.tokenGetter();
   }
 
@@ -49,7 +50,8 @@ export class LoginComponent implements OnInit {
         this.errorMessage = err.error.msg;
         return Observable.of({});
       })
-      .do(console.log)
-      .subscribe(v => this.modal.hide());
+      .subscribe(v => {
+        this.modal.hide();
+      });
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ModalModule} from 'ngx-bootstrap';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import {ModalModule} from 'ngx-bootstrap';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgSelectModule.forRoot()
   ],
   declarations: [],
   exports: [ModalModule, FormsModule]

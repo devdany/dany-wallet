@@ -2,6 +2,11 @@
   <form role="form" #transferForm = "ngForm">
     <h1>받는 주소</h1>
     <input  [(ngModel)]="receiver" required name="receiver" type="text" #input1><br>
+    <h1>보낼 코인</h1>
+    <select  [(ngModel)]="cate" required name="cate" type="text" #category>
+      <option>ETH</option>
+      <option *ngFor="let coin of loginUser.tokens">{{coin.token.symbol}}</option>
+    </select><br>
     <h1>보낼 수량</h1>
     <input  [(ngModel)]="amount" required name="amount" type="text" #input2><br>
     <h1>가스 한도</h1>
@@ -14,6 +19,6 @@
       <strong>{{errorMessage}}</strong>
     </div>
     <br>
-    <button (click)="transfer(receiver, amount, gasLimit, gasPrice); input1.value=''; input2.value=''; input3.value = ''; input4.value = '';" type="button" class="btn btn-primary">전송하기</button>
+    <button (click)="transfer(receiver, cate, amount, gasLimit, gasPrice); input1.value=''; input2.value=''; input3.value = ''; input4.value = '';" type="button" class="btn btn-primary">전송하기</button>
   </form>
 </div>

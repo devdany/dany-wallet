@@ -1,12 +1,11 @@
+import {User} from './user';
 import {Token} from './token';
 
-export interface User {
-  _id: number;
-  email: string;
+export interface TokenWallet {
+  user: User;
   tokens: [
     {
       token: Token,
       balance: number
-    }
-    ];
+    }];
 }

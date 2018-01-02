@@ -1,11 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AuthService} from '../../core/shared/auth.service';
 import {Web3Service} from '../../core/shared/web3.service';
 import {User} from '../../shared/user';
-import {JwtHelperService} from '@auth0/angular-jwt';
 import {Account} from '../../shared/account';
-
-
+import {UserService} from '../../core/shared/user.service';
 
 @Component({
   selector: 'dw-info',
@@ -16,35 +13,54 @@ export class InfoComponent implements OnInit {
   isOpen = false;
   loginUser: User = {
     _id: 0,
-    email: ''
+    email: '',
+    tokens: [
+      {
+        token: {
+          address: '',
+          totalSupply: '',
+          name: '',
+          symbol: '',
+          decimals: '',
+          price: {
+            rate: '',
+            currency: '',
+            diff: '',
+            ts: '',
+          },
+          owner: '',
+          countOps: '',
+          totalIn: '',
+          totalOut: '',
+          holdersCount: '',
+          issuanceCount: ''
+        },
+        balance: 0
+      }]
   };
   account: Account = {
     address: '',
     balance: 0
   };
+
   @Output()
   onAddToken = new EventEmitter();
 
-  constructor(private auth: AuthService, private web3Service: Web3Service, private jwt: JwtHelperService) {}
+  constructor(private web3Service: Web3Service, private userService: UserService) {
+  }
 
   ngOnInit() {}
 
   infoOpen() {
-    if (this.auth.getLoginUser() === undefined) {
-      const token = localStorage.getItem('access_token');
-      const decoded = this.jwt.decodeToken(token);
-      this.loginUser = {
-        _id: decoded._id,
-        email: decoded.email,
-      };
-    } else {
-      this.loginUser = this.auth.getLoginUser();
+    const tokenUser = localStorage.getItem('tokenUser');
+    if (tokenUser) {
+      this.loginUser = JSON.parse(tokenUser).user;
+    }else {
+      this.loginUser = this.userService.getLoginUser();
     }
     this.web3Service.getAccount(this.loginUser._id).then(res => {
       this.account = res;
     });
-
-
     this.isOpen = true;
   }
 

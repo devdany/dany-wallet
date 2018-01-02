@@ -21,10 +21,8 @@ export class Web3Service {
   constructor() { }
 
   getAddress(id: number) {
-    let address: string;
     return this.web3.eth.getAccounts().then(res => {
-      address = res[id];
-      return address;
+      return  res[id];
     });
   }
   getBalance(address: string) {
@@ -43,18 +41,33 @@ export class Web3Service {
       return this.account;
     });
   }
-  transferEther(from: string, to: string, gas: number, gasPrice: number, value: number) {
-    this.transfer_object.from = from;
-    this.transfer_object.to = to;
-    if (gas !== undefined) {
-      this.transfer_object.gas = gas;
+  transferCoin(from: string, cate: string, to: string, gas: number, gasPrice: number, value: number) {
+    if (cate === 'ETH') {
+      this.transfer_object.from = from;
+      this.transfer_object.to = to;
+      if (gas !== undefined) {
+        this.transfer_object.gas = gas;
+      }
+      if (gasPrice !== undefined) {
+        this.transfer_object.gasPrice = gasPrice * 1000000000;
+      }
+      this.transfer_object.value = this.web3.utils.toWei(value, 'ether');
+      return this.web3.eth.sendTransaction(this.transfer_object).then(res => {
+        console.log(res);
+        return res;
+      });
+    } else {
+
     }
-    if (gasPrice !== undefined) {
-      this.transfer_object.gasPrice = gasPrice * 1000000000;
-    }
-    this.transfer_object.value = this.web3.utils.toWei(value, 'ether');
-    return this.web3.eth.sendTransaction(this.transfer_object).then(res => {
-      return res;
+  }
+  getTokenBalance(accountAddr: string, tokenAddr: string) {
+    const data = '0x70a08231000000000000000000000000' + accountAddr.substring(2);
+    return this.web3.eth.call({
+      to: tokenAddr,
+      data: data
+    }).then(res => {
+      console.log(res);
+      return this.web3.utils.fromWei((this.web3.utils.toBN(res)), 'ether');
     });
   }
 }

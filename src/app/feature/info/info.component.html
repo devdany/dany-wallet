@@ -10,10 +10,12 @@
 
   </div>
   <br>
-  <div>
-    <h1>토큰 정보 확인</h1>
-    <div>
-
+  <h1>토큰 정보 확인</h1>
+  <div *ngFor="let to of loginUser.tokens ">
+    <div class="wallet-info col-lg-12" style="margin:0;">
+      <h2 class="col-lg-10">{{to.token.symbol}} : {{to.balance}}</h2>
     </div>
   </div>
+
+
 </div>

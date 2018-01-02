@@ -13,7 +13,6 @@ import {JsonpModule} from "@angular/http";
   imports: [
     CommonModule,
     SharedModule,
-    JsonpModule
   ],
   declarations: [
     HomeComponent,

@@ -7,6 +7,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import {AuthService} from './shared/auth.service';
 import { SignupComponent } from './signup/signup.component';
 import {Web3Service} from './shared/web3.service';
+import {UserService} from './shared/user.service';
+import {TokenService} from './shared/token.service';
 
 
 @NgModule({
@@ -24,6 +26,6 @@ import {Web3Service} from './shared/web3.service';
   ],
   declarations: [NaviComponent, LoginComponent, SignupComponent],
   exports: [NaviComponent, LoginComponent, SignupComponent],
-  providers: [AuthService, Web3Service]
+  providers: [AuthService, Web3Service, UserService, TokenService]
 })
 export class CoreModule { }

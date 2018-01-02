@@ -20,6 +20,7 @@ export class AuthService {
     this.loginUser = {
       _id: decoded._id,
       email: decoded.email,
+      tokens: decoded.tokens
     };
     this.token.next(this.jwt.decodeToken(token));
   }
