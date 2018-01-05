@@ -4,6 +4,7 @@ import {User} from '../../shared/user';
 import {NgForm} from '@angular/forms';
 import {DOCUMENT} from '@angular/common';
 import {UserService} from '../../core/shared/user.service';
+import {Token} from "../../shared/token";
 
 @Component({
   selector: 'dw-transfer',
@@ -77,16 +78,43 @@ export class TransferComponent implements OnInit {
       this.errorMessage = '보낼 코인을 선택하세요!';
       return;
     }
+    let token: Token;
+    if (cate !== 'ETH') {
+      for (let i = 0; i < this.loginUser.tokens.length; i++) {
+        if (this.loginUser.tokens[i].token.symbol === cate) {
+          token = this.loginUser.tokens[i].token;
+          break;
+        }
+      }
+    } else {
+      token = {
+        address: '',
+        totalSupply: '',
+        name: '',
+        symbol: 'ETH',
+        decimals: '',
+        price: {
+          rate: '',
+          currency: '',
+          diff: '',
+          ts: '',
+        },
+        owner: '',
+        countOps: '',
+        totalIn: '',
+        totalOut: '',
+        holdersCount: '',
+        issuanceCount: ''
+      };
+    }
     if (this.errorMessage) {
       this.errorMessage = undefined;
     }
     this.web3Service.getAddress(this.loginUser._id).then(res => {
       this.from = res;
-      this.web3Service.transferCoin(this.from, cate, receiver, gasLimit, gasPrice, amount).then(result => {
-        window.location.reload();
-        alert('전송 완료' + '\n' + result.transactionHash);
-      }, err => {
-        console.error(err);
+      this.web3Service.transferCoin(this.from, token, receiver, gasLimit, gasPrice, amount).then(result => {
+        //window.location.reload();
+        alert('전송 완료');
       });
     });
   }

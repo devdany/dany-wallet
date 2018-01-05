@@ -58,6 +58,13 @@ export class InfoComponent implements OnInit {
     }else {
       this.loginUser = this.userService.getLoginUser();
     }
+    for (let i = 0; i < this.loginUser.tokens.length; i++) {
+      this.web3Service.getAddress(this.loginUser._id).then(addr => {
+        this.web3Service.getTokenBalance(addr, this.loginUser.tokens[i].token.address).then(bal => {
+          this.loginUser.tokens[i].balance = bal;
+        });
+      });
+    }
     this.web3Service.getAccount(this.loginUser._id).then(res => {
       this.account = res;
     });
